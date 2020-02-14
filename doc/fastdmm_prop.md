@@ -35,7 +35,7 @@ To use properties and macros, use the following syntax:
 		set_instance_vars( /*This is a macro*/\
 			dir = (dir == SOUTH ? INSTANCE_VAR_DEFAULT : dir)\
 		)\
-	)\
+	)
 ```
 
 Note the \ at the end of each line - the BYOND compiler error if they are not included.
