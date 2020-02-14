@@ -1,0 +1,85 @@
+@import '../../fontawesome/fontawesome.less';
+@import '../../fontawesome/solid.less';
+#uiframes-container {
+	pointer-events: none;
+}
+#uiframes-container, .uiframe-modal {
+	position: absolute;
+	top:0px;left:0px;right:0px;bottom:0px;
+	overflow:hidden;
+	.uiframe-container {
+		position: absolute;
+		background: transparent;
+		padding: 8px;
+		pointer-events: auto;
+		.uiframe {
+			position: absolute;
+			background: #202020;
+			font-family: Verdana, Geneva, sans-serif;
+			font-size: 13px;
+			color: white;
+			margin: 7px;
+			box-shadow: 10px 10px 20px rgba(0,0,0,.3);
+			left:0px;top:0px;right:0px;bottom:0px;
+			border: 1px solid #40628a;
+			cursor: auto;
+			user-select: none;
+			display: flex;
+			flex-direction: column;
+			-moz-user-select: none;
+			-khtml-user-select: none;
+			-webkit-user-select: none;
+			-webkit-touch-callout: none;
+			-o-user-select: none;
+			.uiframe-header {
+				flex-basis: 30px;
+				font-size: 16px;
+				color: #8ba5c4;
+				overflow: hidden;
+				cursor: default;
+				line-height: 30px;
+				padding-left: 10px;
+				flex-shrink: 0;
+				position: relative;
+				.uiframe-close-button {
+					position: absolute;
+					height: 100%;
+					right: 0px;
+					top: 0px;
+					.fas;
+					font-size: 28px;
+					line-height: 30px;
+					margin-right: 4px;
+					&:before {
+						content: @fa-var-times;
+					}
+					&:hover {
+						opacity: 0.7;
+					}
+					&:active {
+						transform: translate(1px,1px);
+					}
+				}
+			}
+			.uiframe-content {
+				overflow: auto;
+				padding: 8px;
+				flex-grow: 1;
+				scrollbar-width: thin;
+			}
+			.uiframe-footer {
+				flex-shrink: 0;
+				flex-basis: auto;
+				text-align: center;
+				vertical-align: middle;
+				padding: 5px;
+			}
+			&:focus {
+				outline: none;
+			}
+			&:focus-within .uiframe-header {
+				color: #e9c183;
+			}
+		}
+	}
+}

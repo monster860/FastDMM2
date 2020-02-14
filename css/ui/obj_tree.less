@@ -1,0 +1,104 @@
+@import '../../fontawesome/fontawesome.less';
+@import '../../fontawesome/regular.less';
+@import '../../fontawesome/solid.less';
+@import '../util.less';
+
+@objtree-search-height: 24px;
+
+#objtree-window {
+	background: #202020;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	color: white;
+	overflow: auto;
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: @objtree-search-height;
+	scrollbar-width: thin;
+	.no-user-select;
+	.tree-item {
+		.tree-item-header {
+			text-indent: 10px hanging;
+			vertical-align: middle;
+			line-height: 24px;
+			.tree-item-expander {
+				display: inline-block;
+				width: 15px;
+				text-align: center;
+				.fas;
+				font-size: 14px;
+				margin-left: 5px;
+				margin-right: 3px;
+				&:before {
+					content: @fa-var-caret-right;
+				}
+				&.leaf:before {
+					content: "";
+				}
+			}
+			.tree-item-eye {
+				display: inline-block;
+				text-align: center;
+				.far;
+				width: 18px;
+				font-size: 14px;
+				margin-left: 2px;
+				margin-right: 2px;
+				&:before {
+					content: @fa-var-eye;
+				}
+			}
+			.tree-item-icon {
+				display: inline-block;
+				margin-right: 2px;
+				max-height: 24px;
+				max-width: 48px;
+				vertical-align: top;
+			}
+			.tree-item-label {
+				display: inline;
+			}
+		}
+		&.expanded {
+			& > .tree-item-header .tree-item-expander:before {
+				content: @fa-var-caret-down;
+			}
+			& > .tree-item-content {
+				display: block;
+			}
+		}
+		&.viewport-hide {
+			& > .tree-item-header .tree-item-eye:before {
+				content: @fa-var-eye-slash;
+				color: #555555;
+			}
+		}
+		&.selected {
+			& > .tree-item-header {
+				background-color: #2f943c;
+			}
+		}
+		.tree-item-content {
+			display: none;
+			margin-left: 15px;
+		}
+	}
+}
+#objtree-search {
+	left: 0px;
+	width: 100%;
+	bottom: 0px;
+	height: @objtree-search-height;
+	position: absolute;
+	background: linear-gradient(to bottom,
+		#4a4a4a 0%,
+		#404040 100%);
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	line-height: @objtree-search-height;
+	color: white;
+	box-sizing: border-box;
+	border: 1px solid #888;
+}

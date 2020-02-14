@@ -1,0 +1,230 @@
+@menu-height: 32px;
+@tabs-height: 35px;
+@import './util.less';
+@import '../fontawesome/solid.less';
+
+body {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 13px;
+	color: white;
+	background-color: black;
+}
+
+#ui-container {
+	display: flex;
+	position: absolute;
+	left: 0px;
+	top: @menu-height;
+	right: 0px;
+	bottom: 0px;
+	#objtree-container {
+		position: relative;
+		width: 350px;
+	}
+	#mapwindow-container {
+		.no-user-select;
+		#mapwindow {
+			background-color: #444488;
+			position:absolute;
+			width: 100%;
+			height: 100%;
+			top: 0px;
+			left:0px;
+			.pixelate;
+			&:focus {
+				outline: none;
+			}
+		}
+		#tabwindow {
+			position: absolute;
+			left: 0px;
+			right: 0px;
+			top: 0px;
+			height: @tabs-height;
+			background-color: #222244;
+			overflow-x: auto;
+			overflow-y: hidden;
+			scrollbar-width: thin;
+			
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: flex-start;
+
+			.tab {
+				flex: 0 1 auto;
+				min-width: 100px;
+				background-color: #333366;
+				border-right: 1px solid #444488;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				padding: 5px 30px 0px 10px;
+				color: lightgrey;
+				.no-user-select;
+				&.selected {
+					background-color: #444488;
+					color: white;
+				}
+				.close-button {
+					.fas;
+					float: right;
+					margin-right: -20px;
+					margin-top: 3px;
+					color: lightgrey;
+				}
+				&.selected, &:hover, &.modified:hover {
+					.close-button:after {
+						content: @fa-var-times;
+						font-size: 13px;
+					}
+				}
+				&.modified .close-button:after {
+					content: @fa-var-circle;
+					font-size: 10px;
+				}
+			}
+		}
+		#toolwindow {
+			position: absolute;
+			top: @tabs-height;
+			left: 0px;
+			padding: 2px;
+			background-color: rgba(0,0,0,0.5);
+			.tool {
+				margin: 2px;
+				border: 10px solid transparent;
+				&.selected, &.selected:hover {background: #2f943c;}
+				&:hover {background: rgba(255,255,255,0.1);}
+			}
+		}
+		#instancewindow {
+			position: absolute;
+			bottom: 0px;
+			right: 0px;
+			max-width: 300px;
+			max-height: 60%;
+			padding: 2px;
+			background-color: rgba(0,0,0,0.8);
+			overflow: auto;
+			white-space: nowrap;
+			scrollbar-width: thin;
+			.horizontal-node-container {
+				display: inline-block;
+			}
+			.vertical-node-container {
+				display: block;
+			}
+			.variant-node {
+				display: inline-block;
+				margin: 1px;
+				&.variant-instance {
+					display: block;
+				}
+			}
+			.variant-leaf {
+				border: 2px solid transparent;
+				background-color: rgba(0,0,0,0.5);
+				img {
+					max-width: 64px;
+					max-height: 64px;
+					.pixelate;
+				}
+			}
+			.selected {
+				background-color: #2f943c;
+			}
+			&:empty {
+				display: none;// hmmmm
+			}
+		}
+		flex-basis:600px;
+		flex-grow: 1;
+		position:relative;
+	}
+}
+
+#ui-menubar {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	height: @menu-height;
+	overflow-x: auto;
+	overflow-y: hidden;
+	background: #40628a;
+	white-space: nowrap;
+	scrollbar-width: thin;
+	.no-user-select;
+}
+.uiframe-modal {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+body.loading {
+	overflow: hidden;
+}
+
+body.loading #loading {
+	display: flex;
+}
+
+#loading {
+	background-color: rgba(0, 0, 0, 0.8);
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	z-index: 5;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(1440deg);
+	}
+}
+
+#loading::after {
+	content: "";
+	width: 20px;
+	height: 200px;
+	background-color: white;
+	animation-name: spin;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	border-radius: 10px;
+}
+
+/* Fancy scrollbars on chrome! */
+::-webkit-scrollbar {
+	background-color:transparent;
+}
+::-webkit-scrollbar:vertical {
+	width:10px;
+}
+::-webkit-scrollbar:horizontal {
+	height:10px;
+}
+::-webkit-scrollbar-thumb {
+	background-color:#444;
+	border-radius:5px;
+	background: linear-gradient(to right, #505050 0%,#5a5a5a 100%);
+	border:1px solid #333333;
+}
+::-webkit-scrollbar-corner {
+	background-color:#222222;
+}
+::-webkit-scrollbar-track {
+	background-color:#222222;
+}

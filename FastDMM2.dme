@@ -1,0 +1,10 @@
+// This file exists for the sole purpose of not having DM throw a hissy fit when you try to open interface.dmi
+// BEGIN_INTERNALS
+// END_INTERNALS
+// BEGIN_FILE_DIR
+#define FILE_DIR .
+// END_FILE_DIR
+// BEGIN_PREFERENCES
+// END_PREFERENCES
+// BEGIN_INCLUDE
+// END_INCLUDE
