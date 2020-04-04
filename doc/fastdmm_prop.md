@@ -107,8 +107,8 @@ Properties on `instance()` macro are:
 		)\
 	)
 ```
-
--->### pinned_vars
+-->
+### pinned_vars
 
 Causes the listed variables to be displayed at the top of the variable list when using View Variables. Use for commonly-modified variables that get edited often.
 
