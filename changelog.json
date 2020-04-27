@@ -33,5 +33,10 @@
 		"date": "2020-04-27",
 		"author": "monster860",
 		"desc": "Adds a coordinates display to the bottom left corner of the screen"
+	},
+	{
+		"date": "2020-04-27",
+		"author": "monster860",
+		"desc": "Adds ability to pan the map window using arrow keys"
 	}
 ]
