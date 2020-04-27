@@ -160,11 +160,16 @@ body {
   white-space: nowrap;
   scrollbar-width: thin;
 }
+#ui-container #mapwindow-container #instancewindow pre {
+  display: inline-block;
+  margin: 0px;
+}
 #ui-container #mapwindow-container #instancewindow .horizontal-node-container {
   display: inline-block;
 }
 #ui-container #mapwindow-container #instancewindow .vertical-node-container {
   display: block;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 #ui-container #mapwindow-container #instancewindow .variant-node {
   display: inline-block;

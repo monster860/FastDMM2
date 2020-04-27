@@ -1,0 +1,22 @@
+[
+	{
+		"date": "2020-04-27",
+		"author": "monster860",
+		"desc": "Adds a changelog window that shows up if there's new changes. This changelog can be accessed through the Help menu."
+	},
+	{
+		"date": "2020-04-27",
+		"author": "monster860",
+		"desc": "Adds the ability to pixel_x/y drag items by using the drag mode with Ctrl-Click/Drag"
+	},
+	{
+		"date": "2020-04-27",
+		"author": "monster860",
+		"desc": "Improves the look of the instances panel so that the vars of instances are neater"
+	},
+	{
+		"date": "2020-04-27",
+		"author": "monster860",
+		"desc": "Layers can now be toggled with Alt-1/2/3/4 for area/mob/obj/turf respectively"
+	}
+]
