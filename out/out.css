@@ -198,6 +198,14 @@ body {
 #ui-container #mapwindow-container #instancewindow:empty {
   display: none;
 }
+#ui-container #mapwindow-container #statustextwindow {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.8);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+}
 #ui-menubar {
   position: absolute;
   left: 0px;
@@ -490,6 +498,11 @@ div.button:active.menubar-item {
 #uiframes-container .uiframe-container .uiframe .uiframe-content.edit-vars-content,
 .uiframe-modal .uiframe-container .uiframe .uiframe-content.edit-vars-content {
   padding: 0px;
+}
+#uiframes-container .uiframe-container .uiframe .uiframe-content.edit-vars-content .vv-search-box,
+.uiframe-modal .uiframe-container .uiframe .uiframe-content.edit-vars-content .vv-search-box {
+  width: 100%;
+  box-sizing: border-box;
 }
 #uiframes-container .uiframe-container .uiframe .uiframe-content.edit-vars-content table,
 .uiframe-modal .uiframe-container .uiframe .uiframe-content.edit-vars-content table {

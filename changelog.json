@@ -18,5 +18,20 @@
 		"date": "2020-04-27",
 		"author": "monster860",
 		"desc": "Layers can now be toggled with Alt-1/2/3/4 for area/mob/obj/turf respectively"
+	},
+	{
+		"date": "2020-04-27",
+		"author": "monster860",
+		"desc": "Adds a search box to the VV window"
+	},
+	{
+		"date": "2020-04-27",
+		"author": "monster860",
+		"desc": "The type of objects can now be changed via the VV window"
+	},
+	{
+		"date": "2020-04-27",
+		"author": "monster860",
+		"desc": "Adds a coordinates display to the bottom left corner of the screen"
 	}
 ]
