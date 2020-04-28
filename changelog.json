@@ -38,5 +38,10 @@
 		"date": "2020-04-27",
 		"author": "monster860",
 		"desc": "Adds ability to pan the map window using arrow keys"
+	},
+	{
+		"date": "2020-04-28",
+		"author": "monster860",
+		"desc": "Areas are now framed. This can be disabled in the options menu"
 	}
 ]
