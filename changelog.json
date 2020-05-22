@@ -43,5 +43,10 @@
 		"date": "2020-04-28",
 		"author": "monster860",
 		"desc": "Areas are now framed. This can be disabled in the options menu"
+	},
+	{
+		"date": "2020-05-22",
+		"author": "monster860",
+		"desc": "Adds a confirmation before closing if there is unsaved changes"
 	}
 ]
