@@ -53,5 +53,10 @@
 		"date": "2020-05-27",
 		"author": "monster860",
 		"desc": "Fixes Open Local Workspace not working on latest chrome. Requires upgrade to latest chrome version (83)."
+	},
+	{
+		"date": "2020-05-30",
+		"author": "monster860",
+		"desc": "Fixes saving not working on chrome"
 	}
 ]
