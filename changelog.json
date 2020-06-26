@@ -58,5 +58,10 @@
 		"date": "2020-05-30",
 		"author": "monster860",
 		"desc": "Fixes saving not working on chrome"
+	},
+	{
+		"date": "2020-06-26",
+		"author": "monster860",
+		"desc": "Adds the ability to rotate selections using the right-click menu after making a selection"
 	}
 ]
