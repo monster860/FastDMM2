@@ -63,5 +63,10 @@
 		"date": "2020-06-26",
 		"author": "monster860",
 		"desc": "Adds the ability to rotate selections using the right-click menu after making a selection"
+	},
+	{
+		"date": "2020-07-03",
+		"author": "monster860",
+		"desc": "Mip-mapping has been moved to a separate thread"
 	}
 ]
