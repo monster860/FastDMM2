@@ -73,5 +73,10 @@
 		"date": "2020-10-01",
 		"author": "monster860",
 		"desc": "The editor now uses a service worker to cache itself to your disk, meaning you can now use it offline."
+	},
+	{
+		"date": "2020-10-01",
+		"author": "monster860",
+		"desc": "It's now a PWA. If you don't know what that is, press the plus button with a circle around it on the right side of the URL bar (assuming you're on chrome)."
 	}
 ]
