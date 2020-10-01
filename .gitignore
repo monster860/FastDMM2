@@ -1,3 +1,4 @@
 node_modules/
 /*.int
 /*.lk
+dist
