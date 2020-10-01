@@ -1,8 +1,6 @@
 'use strict';
 import "../css/main.less"
 
-navigator.serviceWorker.register('sw.js');
-
 const Editor = require('./editor.js');
 window.addEventListener("DOMContentLoaded", () => {
 	window.editor = new Editor();
