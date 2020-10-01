@@ -310,7 +310,7 @@ class MapWindow {
 			gl.bindFramebuffer(gl.FRAMEBUFFER, this.gl_click_framebuffer);
 			let mouse_id_array = new Uint8Array(4);
 			let read_x = this.mouse_last_event.offsetX|0;
-			let read_y = gl.canvas.height - this.mouse_last_event.offsetY|0;
+			let read_y = this.canvas.height - this.mouse_last_event.offsetY|0;
 			gl.readPixels(read_x, read_y, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, mouse_id_array);
 			gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 			let mouse_id = (mouse_id_array[0] << 24) + (mouse_id_array[1] << 16) + (mouse_id_array[2] << 8) + (mouse_id_array[3]);

@@ -78,5 +78,10 @@
 		"date": "2020-10-01",
 		"author": "monster860",
 		"desc": "It's now a PWA. If you don't know what that is, press the plus button with a circle around it on the right side of the URL bar (assuming you're on chrome)."
+	},
+	{
+		"date": "2020-10-01",
+		"author": "monster860",
+		"desc": "Fixes a bug where pixel-hunting clicks register in the wrong spot after resizing the window"
 	}
 ]
