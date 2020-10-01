@@ -49,7 +49,7 @@ module.exports = {
 					let files = await fs.readdir(dir);
 					let out_json = [];
 					for(let file of files) {
-						if(file == "appfiles.json") continue;
+						if(file == "appfiles.json" || file == "sw.js") continue;
 						let hash = crypto.createHash('sha1').update(await fs.readFile(path.resolve(dir, file))).digest('hex')
 						out_json.push([
 							file, hash

@@ -26,9 +26,11 @@ module.exports = class WelcomePanel extends Panel {
         if(error) this.$('.error-text').textContent = error;
 
 		this.$(".github-go-button").addEventListener("click", () => {
+            editor.has_meaningful_interact = true;
 			this.try_initialize(editor.try_initialize_github(this.$('.github-repo-field').value));
         });
         this.$(".github-repo-field").addEventListener("keydown", (e) => {
+            editor.has_meaningful_interact = true;
             if(e.code == "Enter") {
                 e.preventDefault();
                 this.try_initialize(editor.try_initialize_github(this.$('.github-repo-field').value));
@@ -46,6 +48,7 @@ module.exports = class WelcomePanel extends Panel {
             button_elem.addEventListener("click", async () => {
                 if(is_open_busy) return;
                 try {
+                    editor.has_meaningful_interact = true;
                     is_open_busy = true;
                     let dir_handle = await window.chooseFileSystemEntries({type: "open-directory"});
                     this.try_initialize(editor.try_initialize_native_fs(dir_handle), () => {is_open_busy = false;});
@@ -61,6 +64,7 @@ module.exports = class WelcomePanel extends Panel {
             if(input_elem.webkitdirectory !== undefined) {
                 input_elem.webkitdirectory = true;
                 input_elem.addEventListener("change", () => {
+                    editor.has_meaningful_interact = true;
                     this.try_initialize(editor.try_initialize_webkitdirectory(input_elem.files), ()=>{input_elem.value = "";});
                 });
                 local_workspace_elem.appendChild(input_elem);

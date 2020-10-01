@@ -1,6 +1,21 @@
 'use strict';
 import "../css/main.less"
 
+if('serviceWorker' in navigator) {
+	navigator.serviceWorker.addEventListener("message", (e) => {
+		if(e.data == "new-update") {
+			if(!window.editor || !window.editor.has_meaningful_interact) {
+				window.location.reload();
+			} else {
+				window.editor.notification("There is a new update to FastDMM2. Reload it.")
+			}
+		}
+	});
+	
+	navigator.serviceWorker.register('sw.js');
+	if(navigator.serviceWorker.controller) navigator.serviceWorker.controller.postMessage("i-exist");
+}
+
 const Editor = require('./editor.js');
 window.addEventListener("DOMContentLoaded", () => {
 	window.editor = new Editor();

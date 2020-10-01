@@ -25,6 +25,8 @@ class Editor {
 		document.title = "FastDMM2";
 		this.loading_counter = 0;
 
+		this.has_meaningful_interact = false;
+
 		/** @type {GithubFileContext|WebkitDirectoryFileContext|NativeFsFileContext} */
 		this.file_context = null;
 		/** @type {Parser} */
@@ -82,6 +84,7 @@ class Editor {
 			let branch = querystring.get("branch");
 			let init_map = querystring.get("map");
 			try {
+				this.has_meaningful_interact = true;
 				this.try_initialize_github(repo, branch, () => {
 					this.open_dmm(init_map);
 				});
@@ -429,6 +432,24 @@ class Editor {
 			this.running_object_count.delete(instance_string);
 		else
 			this.running_object_count.set(instance_string, count);
+	}
+
+	notification(text) {
+		let win = document.getElementById("notificationwindow");
+		let elem = document.createElement("div");
+		elem.classList.add("notif-card");
+		elem.textContent = text;
+		if(!win.children.length) {
+			win.appendChild(elem);
+		} else {
+			win.insertBefore(elem, win.firstElementChild);
+		}
+		setTimeout(() => {
+			elem.style.opacity = "0";
+		}, 4000);
+		setTimeout(() => {
+			win.removeChild(elem);
+		}, 6500)
 	}
 }
 Editor.Parser = Parser;

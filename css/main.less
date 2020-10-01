@@ -103,6 +103,22 @@ body {
 				&:hover {background: rgba(255,255,255,0.1);}
 			}
 		}
+		#notificationwindow {
+			position: absolute;
+			top: @tabs-height;
+			max-width: 500px;
+			right: 0px;
+			padding: 2px;
+			.notif-card {
+				pointer-events: none;
+				padding: 20px;
+				font-size: 24px;
+				max-width: 500px;
+				transition: opacity 2s;
+				opacity: 1;
+				background-color: rgba(0,0,0,0.5);
+			}
+		}
 		#instancewindow {
 			position: absolute;
 			bottom: 0px;
