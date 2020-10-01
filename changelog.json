@@ -68,5 +68,10 @@
 		"date": "2020-07-03",
 		"author": "monster860",
 		"desc": "Mip-mapping has been moved to a separate thread"
+	},
+	{
+		"date": "2020-10-01",
+		"author": "monster860",
+		"desc": "The editor now uses a service worker to cache itself to your disk, meaning you can now use it offline."
 	}
 ]
