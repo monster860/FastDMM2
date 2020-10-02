@@ -309,8 +309,8 @@ class MapWindow {
 		if(this.gl_enable_framebuffer && e && this.last_render_instances) {
 			gl.bindFramebuffer(gl.FRAMEBUFFER, this.gl_click_framebuffer);
 			let mouse_id_array = new Uint8Array(4);
-			let read_x = this.mouse_last_event.offsetX|0;
-			let read_y = this.canvas.height - this.mouse_last_event.offsetY|0;
+			let read_x = (this.mouse_last_event.offsetX*devicePixelRatio)|0;
+			let read_y = this.canvas.height - (this.mouse_last_event.offsetY*devicePixelRatio)|0;
 			gl.readPixels(read_x, read_y, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, mouse_id_array);
 			gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 			let mouse_id = (mouse_id_array[0] << 24) + (mouse_id_array[1] << 16) + (mouse_id_array[2] << 8) + (mouse_id_array[3]);
@@ -411,12 +411,26 @@ class MapWindow {
 	}
 
 	canvas_wheel(e) {
+		// move the mapwindow to the mouse position
+		this.mapwindow_x += (e.offsetX*devicePixelRatio - (this.canvas.width/2)) / this.mapwindow_zoom/32;
+		this.mapwindow_y += -(e.offsetY*devicePixelRatio - (this.canvas.height/2)) / this.mapwindow_zoom/32;
+		// do the zoomy bit
 		let delta_y = e.deltaY;
 		if(e.deltaMode == WheelEvent.DOM_DELTA_PIXEL) delta_y /= 100;
 		else if(e.deltaMode == WheelEvent.DOM_DELTA_LINE) delta_y /= 3;
 		this.mapwindow_log_zoom -= Math.max(-1, Math.min(1, delta_y));
 		this.mapwindow_log_zoom = Math.max(-5, Math.min(5, this.mapwindow_log_zoom));
 		this.mapwindow_zoom = 2 ** Math.round(this.mapwindow_log_zoom);
+		// move it back
+		this.mapwindow_x -= (e.offsetX*devicePixelRatio - (this.canvas.width/2)) / this.mapwindow_zoom/32;
+		this.mapwindow_y -= -(e.offsetY*devicePixelRatio - (this.canvas.height/2)) / this.mapwindow_zoom/32;
+
+		// keep the mapwindow in-bounds
+		if(this.mapwindow_x < 1) this.mapwindow_x = 1;
+		if(this.mapwindow_y < 1) this.mapwindow_y = 1;
+		if(this.mapwindow_x > maxx) this.mapwindow_x = maxx;
+		if(this.mapwindow_y > maxy) this.mapwindow_y = maxy;
+
 		e.preventDefault();
 		this.update_from_mouse(e);
 	}

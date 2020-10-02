@@ -83,5 +83,15 @@
 		"date": "2020-10-01",
 		"author": "monster860",
 		"desc": "Fixes a bug where pixel-hunting clicks register in the wrong spot after resizing the window"
+	},
+	{
+		"date": "2020-10-02",
+		"author": "monster860",
+		"desc": "Makes it so that zooming is now relative to the mouse"
+	},
+	{
+		"date": "2020-10-02",
+		"author": "monster860",
+		"desc": "Fixes pixel-hunting clicks registering in the wrong spot when display scaling and/or browser zoom is present"
 	}
 ]

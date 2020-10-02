@@ -9,9 +9,9 @@ module.exports = `
 
 // eye and sight
 #define SEEINVIS 2
-#define SEEMOBS 2
-#define SEEOBJS 2
-#define SEETURFS 2
+#define SEEMOBS 4
+#define SEEOBJS 8
+#define SEETURFS 16
 
 // gliding
 #define NO_STEPS 0
@@ -68,7 +68,7 @@ module.exports = `
 #define QUAD_EASING 7
 #define EASE_IN 64
 #define EASE_OUT 128
-#define JUMP_EASING 0123456789
+#define JUMP_EASING 256
 
 // animation flags
 #define ANIMATION_END_NOW 1
@@ -224,6 +224,7 @@ var/const
 	BLEND_ADD = 2
 	BLEND_SUBTRACT = 3
 	BLEND_MULTIPLY = 4
+	BLEND_INSET_OVERLAY = 5
 
 /datum
 /datum/var/const/type
