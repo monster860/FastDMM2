@@ -51,8 +51,8 @@ async function from_cache(e) {
 	let appfiles = new Map(JSON.parse(appfiles_text));
 	if(url.pathname == "/" || url.pathname == "/index.html") {
 		let has_staging = await caches.has('staging');
-		if(!has_staging) {
-			if(!update_cache_promise) {
+		if(!update_cache_promise) {
+			if(!has_staging) {
 				update_cache_promise = (async () => {
 					try {
 						let new_appfiles_res = await fetch("appfiles.json", {cache: 'no-cache'});
@@ -66,15 +66,15 @@ async function from_cache(e) {
 						update_cache_promise = null;
 					}
 				})();
+			} else {
+				let staging = await caches.open('staging');
+				let copy_promises = [];
+				for(let this_res of (await staging.matchAll())) {
+					copy_promises.push(cache.put(this_res.url, this_res));
+				}
+				await Promise.all(copy_promises);
+				await caches.delete('staging');
 			}
-		} else {
-			let staging = await caches.open('staging');
-			let copy_promises = [];
-			for(let this_res of (await staging.matchAll())) {
-				copy_promises.push(cache.put(this_res.url, this_res));
-			}
-			await Promise.all(copy_promises);
-			await caches.delete('staging');
 		}
 		let page_res = await cache.match('index.html');
 		let text = await (page_res).text();
