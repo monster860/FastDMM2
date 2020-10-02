@@ -425,6 +425,8 @@ class MapWindow {
 		this.mapwindow_x -= (e.offsetX*devicePixelRatio - (this.canvas.width/2)) / this.mapwindow_zoom/32;
 		this.mapwindow_y -= -(e.offsetY*devicePixelRatio - (this.canvas.height/2)) / this.mapwindow_zoom/32;
 
+		let maxx = this.editor.dmm ? this.editor.dmm.maxx : 1;
+		let maxy = this.editor.dmm ? this.editor.dmm.maxy : 1;
 		// keep the mapwindow in-bounds
 		if(this.mapwindow_x < 1) this.mapwindow_x = 1;
 		if(this.mapwindow_y < 1) this.mapwindow_y = 1;
