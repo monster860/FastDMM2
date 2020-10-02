@@ -93,5 +93,10 @@
 		"date": "2020-10-02",
 		"author": "monster860",
 		"desc": "Fixes pixel-hunting clicks registering in the wrong spot when display scaling and/or browser zoom is present"
+	},
+	{
+		"date": "2020-10-03",
+		"author": "monster860",
+		"desc": "Partially fixes backwards typing in Firefox"
 	}
 ]

@@ -215,7 +215,9 @@ module.exports = class EditVarsPanel extends Panel {
 				finish();
 			};
 			let input_listener = (e) => {
-				td.textContent = td.textContent.replace(/\r?\n/g, "");
+				let ntc = td.textContent.replace(/\r?\n/g, "");
+				if(td.textContent != ntc || td.childNodes.length != 1 || !(td.childNodes[0] instanceof Text))
+					td.textContent = ntc;
 			};
 			td.addEventListener("keydown", keydown_listener);
 			td.addEventListener("focusout", focusout_listener);
