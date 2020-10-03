@@ -98,5 +98,10 @@
 		"date": "2020-10-03",
 		"author": "monster860",
 		"desc": "Partially fixes backwards typing in Firefox"
+	},
+	{
+		"date": "2020-10-03",
+		"author": "monster860",
+		"desc": "Adds the ability to right click on a tile and copy a permalink when loading directly off of GitHub"
 	}
 ]

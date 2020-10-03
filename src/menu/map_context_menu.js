@@ -12,6 +12,9 @@ class MapContextMenu extends Menu {
 	build_menu(tile) {
 		let base = this.build_menu_base();
 		if(tile) {
+			if(this.editor.file_context.add_map_context_menu_options) {
+				this.editor.file_context.add_map_context_menu_options(this, base, tile);
+			}
 			if(this.editor.placement_mode == this.editor.select_tool && this.editor.select_tool.selection_info_map.has(this.editor.dmm)) {
 				base.appendChild(this.build_menu_item({
 					label: "Rotate 90\u00b0 CW",

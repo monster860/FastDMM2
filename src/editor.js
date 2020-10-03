@@ -83,10 +83,20 @@ class Editor {
 			let repo = querystring.get("repo");
 			let branch = querystring.get("branch");
 			let init_map = querystring.get("map");
+			let init_coords = querystring.get("xyz");
 			try {
 				this.has_meaningful_interact = true;
-				this.try_initialize_github(repo, branch, () => {
-					this.open_dmm(init_map);
+				this.try_initialize_github(repo, branch, async () => {
+					let tab = await this.open_dmm(init_map);
+					if(init_coords) {
+						let coords_split = init_coords.split(",");
+						let cx = (+coords_split[0]|0);
+						let cy = (+coords_split[1]|0);
+						let cz = (+coords_split[2]|0);
+						tab.mapwindow_x = Math.min(Math.max(cx, 1), tab.maxx);
+						tab.mapwindow_y = Math.min(Math.max(cy, 1), tab.maxy);
+						tab.mapwindow_z = Math.min(Math.max(cz, 1), tab.maxz);
+					}
 				});
 			} catch(e) {
 				this.welcome_panel = new WelcomePanel(this, e);
@@ -161,11 +171,12 @@ class Editor {
 	 * 
 	 * @param {string} dmm 
 	 */
-	open_dmm(dmm) {
+	async open_dmm(dmm) {
 		console.log("Loading " + dmm);
-		this.read_text_file(dmm).then(text => {
-			this.add_tab(new DMM(this.parser, dmm, text));
-		});
+		let text = await this.read_text_file(dmm);
+		let tab = new DMM(this.parser, dmm, text);
+		this.add_tab(tab);
+		return tab;
 	}
 	/**
 	 * 

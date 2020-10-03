@@ -49,6 +49,20 @@ module.exports = class GithubFileContext {
 		this.active_reads.clear();
 	}
 
+	add_map_context_menu_options(menu, base, tile) {
+		base.appendChild(menu.build_menu_item({
+			label: "Copy Permalink",
+			click_handler: this.copy_link.bind(this, tile)
+		}));
+		base.appendChild(document.createElement("hr"));
+	}
+
+	/** @param {import("../parser/dmm").Tile} tile */
+	copy_link(tile) {
+		let url = window.location.origin + window.location.pathname + "?repo=" + encodeURIComponent(this.name) + "&branch=" + encodeURIComponent(this.commit_hash) + "&map=" + encodeURIComponent(tile.dmm.filename) + "&xyz=" + encodeURIComponent(tile.x+","+tile.y+","+tile.z);
+		navigator.clipboard.writeText(url);
+	}
+
 	async initialize() {
 		if('indexedDB' in window) {
 			try {
