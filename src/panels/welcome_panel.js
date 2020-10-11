@@ -40,7 +40,7 @@ module.exports = class WelcomePanel extends Panel {
         this.$(".github-repo-field").value = window.localStorage.getItem("last_successful_github_repo") || "yogstation13/yogstation";
 
         let local_workspace_elem = this.$('.local-workspace');
-        if(window.chooseFileSystemEntries) {
+        if(window.showDirectoryPicker) {
             let button_elem = document.createElement("button");
             button_elem.classList.add("button");
             button_elem.textContent = "Open Local Workspace";
@@ -50,7 +50,7 @@ module.exports = class WelcomePanel extends Panel {
                 try {
                     editor.has_meaningful_interact = true;
                     is_open_busy = true;
-                    let dir_handle = await window.chooseFileSystemEntries({type: "open-directory"});
+                    let dir_handle = await window.showDirectoryPicker();
                     this.try_initialize(editor.try_initialize_native_fs(dir_handle), () => {is_open_busy = false;});
                 } catch(e) {
                     is_open_busy = false;

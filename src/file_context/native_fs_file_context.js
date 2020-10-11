@@ -56,11 +56,11 @@ module.exports = class NativeFsFileContext {
 
 	static async walk_directory(handle, full_path = "") {
 		let arr = [];
-		for await(const sub_handle of handle.getEntries()) {
+		for await(const sub_handle of handle.values()) {
 			let sub_full_path = path.join(full_path, sub_handle.name);
 			if(sub_handle.name == ".git" || sub_handle.name == "node_modules") continue;
 			if(sub_full_path == "tools" || sub_full_path == "data/logs") continue;
-			if(sub_handle.isDirectory) {
+			if(sub_handle.kind == 'directory') {
 				arr.push(await this.walk_directory(sub_handle, sub_full_path));
 			} else {
 				arr.push({'path': sub_full_path, 'handle': sub_handle});
@@ -109,9 +109,9 @@ module.exports = class NativeFsFileContext {
 				for(let i = 0; i < parts.length; i++) {
 					let part = parts[i];
 					if(i == parts.length - 1) {
-						handle = await handle.getFile(part, {create: true});
+						handle = await handle.getFileHandle(part, {create: true});
 					} else {
-						handle = await handle.getDirectory(part, {create: true});
+						handle = await handle.getDirectoryHandle(part, {create: true});
 					}
 				}
 				this.file_map.set(dmm.filename.toLowerCase(), handle);
