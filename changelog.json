@@ -103,5 +103,15 @@
 		"date": "2020-10-03",
 		"author": "monster860",
 		"desc": "Adds the ability to right click on a tile and copy a permalink when loading directly off of GitHub"
+	},
+	{
+		"date": "2021-01-05",
+		"author": "monster860",
+		"desc": "Holding ctrl while clicking on a menu item now keeps the menu open"
+	},
+	{
+		"date": "2021-01-05",
+		"author": "monster860",
+		"desc": "Fixes tabs with long names being impossible to close sometimes"
 	}
 ]

@@ -41,7 +41,7 @@ module.exports = class Menu {
 			});
 		}
 		elem.addEventListener("mousedown", async (e) => {
-			if(close_on_click && !disabled) {
+			if(close_on_click && !disabled && !e.ctrlKey) {
 				document.activeElement.blur();
 			}
 			e.preventDefault();
