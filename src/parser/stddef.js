@@ -3,8 +3,8 @@ module.exports = `
 #define EXCEPTION(value) new /exception(value)
 #define ASSERT(expression) if(!(expression)) { CRASH("[__FILE__]:[__LINE__]:Assertion Failed: [#X]")}
 
-#define DM_VERSION 513
-#define DM_BUILD 1526
+#define DM_VERSION 514
+#define DM_BUILD 1554
 #define FASTDMM 1
 
 // eye and sight
@@ -31,6 +31,7 @@ module.exports = `
 #define TILE_BOUND 256
 #define PIXEL_SCALE 512
 #define PASS_MOUSE 1024
+#define TILE_MOVER 2048
 
 #define CONTROL_FREAK_ALL 1
 #define CONTROL_FREAK_SKIN 2
@@ -126,6 +127,18 @@ module.exports = `
 #define VIS_INHERIT_ID 32
 #define VIS_UNDERLAY 64
 #define VIS_HIDE 128
+
+// color spaces
+#define COLORSPACE_RGB 0
+#define COLORSPACE_HSV 1
+#define COLORSPACE_HSL 2
+#define COLORSPACE_HCY 3
+
+// generator functions
+#define UNIFORM_RAND 0
+#define NORMAL_RAND 1
+#define LINEAR_RAND 2
+#define SQUARE_RAND 3
 
 // directions
 var/const

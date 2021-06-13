@@ -113,5 +113,10 @@
 		"date": "2021-01-05",
 		"author": "monster860",
 		"desc": "Fixes tabs with long names being impossible to close sometimes"
+	},
+	{
+		"date": "2021-06-13",
+		"author": "monster860",
+		"desc": "Updates to 514"
 	}
 ]
