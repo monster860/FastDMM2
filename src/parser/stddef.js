@@ -4,7 +4,7 @@ module.exports = `
 #define ASSERT(expression) if(!(expression)) { CRASH("[__FILE__]:[__LINE__]:Assertion Failed: [#X]")}
 
 #define DM_VERSION 514
-#define DM_BUILD 1554
+#define DM_BUILD 1556
 #define FASTDMM 1
 
 // eye and sight
