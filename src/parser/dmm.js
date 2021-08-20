@@ -262,6 +262,42 @@ class DMM extends EventEmitter {
 		}
 	}
 
+	resize(maxx, maxy, maxz) {
+		for(let z = 0; z < maxz; z++) {
+			let z_level;
+			if(this.z_levels.length > z) {
+				z_level = this.z_levels[z];
+			} else {
+				z_level = [];
+				this.z_levels.push(z_levels);
+			}
+			for(let y = 0; y < maxy; y++) {
+				let row;
+				if(z_level.length > y) {
+					row = z_level[y];
+				} else {
+					row = [];
+					z_level.push(row);
+				}
+				for(let x = row.length; x < maxx; x++) {
+					row.push(new Tile(this, x+1, y+1, z+1, undefined, false));
+				}
+				row.length = maxx;
+			}
+			z_level.length = maxy;
+		}
+		this.z_levels.length = maxz;
+		this.maxx = maxx;
+		this.maxy = maxy;
+		this.maxz = maxz;
+		if(this.mapwindow_x > maxx) this.mapwindow_x = maxx;
+		if(this.mapwindow_y > maxy) this.mapwindow_y = maxy;
+		if(this.mapwindow_z > maxz) this.mapwindow_z = maxz;
+		this.undo_frames.length = 0;
+		this.redo_frames.length = 0;
+		this.undo_frame = [];
+	}
+
 	/**
 	 * 
 	 * @param {number} x 

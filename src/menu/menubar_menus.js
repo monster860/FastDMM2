@@ -174,6 +174,19 @@ class DmmOptionsMenu extends Menu {
 	set_format(e, format = "standard") {
 		this.editor.dmm.format = format;
 	}
+
+	async resize(e) {
+		let dmm = this.editor.dmm;
+		if(!dmm) return;
+		let dmm_options = await new MapPropsPanel(this.editor, dmm, "Resize Map", false).wait_until_close();
+		if(!dmm_options) return;
+		if(dmm_options.maxx != dmm.maxx || dmm_options.maxy != dmm.maxy || dmm_options.maxz != dmm.maxz) dmm.resize(dmm_options.maxx, dmm_options.maxy, dmm_options.maxz);
+		if(dmm_options.filename != dmm.filename) {
+			dmm.filename = dmm_options.filename;
+			this.editor.close_tab(dmm);
+			this.editor.add_tab(dmm);
+		}
+	}
 }
 
 let help_entries = {
