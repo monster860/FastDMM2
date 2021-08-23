@@ -123,5 +123,10 @@
 		"date": "2021-08-20",
 		"author": "monster860",
 		"desc": "Adds the ability to resize maps"
+	},
+	{
+		"date": "2021-08-23",
+		"author": "monster860",
+		"desc": "Makes File->New default to using the directory of the currently opened map rather than the root directory of the project"
 	}
 ]

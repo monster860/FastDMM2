@@ -29,7 +29,12 @@ module.exports = class MapPropsPanel extends Panel {
 
 		/** @type {HTMLInputElement} */
 		let filename_input = this.$('.filename-input');
-		filename_input.value = dmm ? dmm.filename : "untitled-" + Math.floor(Math.random()*100000)+".dmm";
+		let path_prefix = "";
+		if(this.editor.dmm) {
+			let search = /^([^/\\]+[/\\])+/.exec(this.editor.dmm.filename);
+			if(search) path_prefix = search[0];
+		}
+		filename_input.value = dmm ? dmm.filename : (path_prefix + "untitled-" + Math.floor(Math.random()*100000)+".dmm");
 
 		/** @type {HTMLInputElement} */
 		let maxx_input = this.$('.maxx-input');
