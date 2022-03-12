@@ -30,6 +30,7 @@ class DMM extends EventEmitter {
 		this.is_crlf = true;
 		this.original_keys = new Map();
 		this.running_object_count = new Map();
+		this.is_external = false;
 		this.external_handle = null;
 		this.tab_elem = null;
 
@@ -263,39 +264,60 @@ class DMM extends EventEmitter {
 	}
 
 	resize(maxx, maxy, maxz) {
+		let old_z_levels = this.z_levels;
+		let old_maxx = this.maxx;
+		let old_maxy = this.maxy;
+		let old_maxz = this.maxz;
+		let new_z_levels = [];
+		let added_instances = [];
 		for(let z = 0; z < maxz; z++) {
-			let z_level;
-			if(this.z_levels.length > z) {
-				z_level = this.z_levels[z];
-			} else {
-				z_level = [];
-				this.z_levels.push(z_levels);
-			}
+			let z_level = [];
+			new_z_levels.push(z_level);
 			for(let y = 0; y < maxy; y++) {
-				let row;
-				if(z_level.length > y) {
-					row = z_level[y];
-				} else {
-					row = [];
-					z_level.push(row);
+				let row = [];
+				z_level.push(row);
+				for(let x = 0; x < maxx; x++) {
+					let tile = this.get_tile(x+1, y+1, z+1);
+					if(!tile) {
+						tile = new Tile(this, x+1, y+1, z+1);
+						added_instances.push(...tile);
+					}
+					row.push(tile);
 				}
-				for(let x = row.length; x < maxx; x++) {
-					row.push(new Tile(this, x+1, y+1, z+1, undefined, false));
-				}
-				row.length = maxx;
 			}
-			z_level.length = maxy;
 		}
-		this.z_levels.length = maxz;
-		this.maxx = maxx;
-		this.maxy = maxy;
-		this.maxz = maxz;
-		if(this.mapwindow_x > maxx) this.mapwindow_x = maxx;
-		if(this.mapwindow_y > maxy) this.mapwindow_y = maxy;
-		if(this.mapwindow_z > maxz) this.mapwindow_z = maxz;
-		this.undo_frames.length = 0;
-		this.redo_frames.length = 0;
-		this.undo_frame = [];
+		let deleted_instances = [];
+		for(let level of this.z_levels) for(let row of level) for(let tile of row) {
+			if(tile.x > maxx || tile.y > maxy || tile.z > maxz) deleted_instances.push(...tile);
+		}
+
+		let apply = (initial = false) => {
+			this.z_levels = new_z_levels;
+			this.maxx = maxx;
+			this.maxy = maxy;
+			this.maxz = maxz;
+			if(this.mapwindow_x > maxx) this.mapwindow_x = maxx;
+			if(this.mapwindow_y > maxy) this.mapwindow_y = maxy;
+			if(this.mapwindow_z > maxz) this.mapwindow_z = maxz;
+			if(initial) for(let instance of added_instances) this.handle_instance_added(""+instance);
+			for(let instance of deleted_instances) this.handle_instance_removed(""+instance);
+			this.undo_frame.push([this, undo]);
+		}
+		let undo = () => {
+			this.z_levels = old_z_levels;
+			this.maxx = old_maxx;
+			this.maxy = old_maxy;
+			this.maxz = old_maxz;
+			if(this.mapwindow_x > maxx) this.mapwindow_x = old_maxx;
+			if(this.mapwindow_y > maxy) this.mapwindow_y = old_maxy;
+			if(this.mapwindow_z > maxz) this.mapwindow_z = old_maxz;
+			for(let instance of added_instances) this.handle_instance_removed(""+instance);
+			for(let instance of deleted_instances) this.handle_instance_added(""+instance);
+			this.undo_frame.push([this, apply]);
+		}
+
+		apply(true);
+		this.push_undo();
 	}
 
 	/**

@@ -128,5 +128,15 @@
 		"date": "2021-08-23",
 		"author": "monster860",
 		"desc": "Makes File->New default to using the directory of the currently opened map rather than the root directory of the project"
+	},
+	{
+		"date": "2022-03-12",
+		"author": "monster860",
+		"desc": "Map resizes can now be undone"
+	},
+	{
+		"date": "2022-03-12",
+		"author": "monster860",
+		"desc": "Newly created maps will now show up in File->Open when opening a local workspace"
 	}
 ]

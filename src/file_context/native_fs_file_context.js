@@ -47,7 +47,12 @@ module.exports = class NativeFsFileContext {
 		return await curr_handle.getFile();*/
 		let pathlow = file_path.toLowerCase();
 		let file = this.file_map.get(pathlow);
-		if(!file) throw new Error("Non-existent file " + file_path);
+		if(!file) {
+			if(file_path.includes("~")) {
+				throw new Error(`Could not find file ${file_path}. This could be due to the presence of a tilde (~) character in the file path. To resolve this issue, rename the file to not use a tilde. A curly brace ({) has the same property of being included after other files.`);
+			}
+			throw new Error("Non-existent file " + file_path);
+		}
 		if(file_path != file.path) {
 			console.warn(`Case of path doesn't match - in code: '${file_path}', in file system: '${file.path}'`);
 		}
@@ -114,7 +119,10 @@ module.exports = class NativeFsFileContext {
 						handle = await handle.getDirectoryHandle(part, {create: true});
 					}
 				}
-				this.file_map.set(dmm.filename.toLowerCase(), handle);
+				if(!this.file_map.has(dmm.filename.toLowerCase())) {
+					this.dmm_files.push(dmm.filename);
+				}
+				this.file_map.set(dmm.filename.toLowerCase(), {path: dmm.filename, handle});
 			}
 			let writer = await handle.createWritable();
 			await writer.write(dmm_as_string);
