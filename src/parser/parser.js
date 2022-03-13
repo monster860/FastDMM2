@@ -181,6 +181,7 @@ class Parser {
 							if(arg_index != -1 && arg_index < argument_values.length) {
 								let str = "";
 								for(let t2 of argument_values[arg_index]) {
+									if(t2 instanceof SymbolToken && t2.value == "##") continue;
 									str += t2.raw();
 								}
 								i++;

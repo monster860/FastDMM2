@@ -138,5 +138,10 @@
 		"date": "2022-03-12",
 		"author": "monster860",
 		"desc": "Newly created maps will now show up in File->Open when opening a local workspace"
+	},
+	{
+		"date": "2022-03-12",
+		"author": "monster860",
+		"desc": "Fix issue with token paste in strings in preprocessor"
 	}
 ]
