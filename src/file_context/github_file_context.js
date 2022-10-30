@@ -88,12 +88,19 @@ module.exports = class GithubFileContext {
 	}
 
 	read_file(path) {
-		let tree_entry = this.tree_map.get(path.toLowerCase());
-		if(!tree_entry) {
-			throw new Error("Non-existent file " + path);
-		}
-		if(tree_entry.path != path) {
-			console.warn(`Case of path doesn't match - in code: '${path}', in github: '${tree_entry.path}'`);
+		let is_url = path.match("^https?://") !== null;
+		let tree_entry = {
+			path: path,
+			sha: path
+		};
+		if(!is_url) {
+			tree_entry = this.tree_map.get(path.toLowerCase());
+			if(!tree_entry) {
+				throw new Error("Non-existent file " + path);
+			}
+			if(tree_entry.path != path) {
+				console.warn(`Case of path doesn't match - in code: '${path}', in github: '${tree_entry.path}'`);
+			}
 		}
 		if(this.active_reads.has(tree_entry.path)) return this.active_reads.get(tree_entry.path);
 		let promise;
@@ -124,7 +131,8 @@ module.exports = class GithubFileContext {
 			if(!blob) {
 				for(let i = 0; i < 5; i++) {
 					try {
-						let response = await fetch(`https://cdn.jsdelivr.net/gh/${this.name}@${this.commit_hash}/${tree_entry.path}`, {cache: "force-cache"});
+						
+						let response = await fetch(is_url ? path : `https://cdn.jsdelivr.net/gh/${this.name}@${this.commit_hash}/${tree_entry.path}`, {cache: "force-cache"});
 						if(response.status != 200) throw new Error(`${response.status} ${response.statusText} - ${await response.text()}`);
 						blob = await response.blob();
 						err = null;
