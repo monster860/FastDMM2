@@ -125,8 +125,8 @@ class Instance {
 				color = [1,1,1];
 			}
 			this.cached_appearance = new Appearance({
-				icon: icon ? icon.file : null,
-				icon_state: this.get_var("icon_state"),
+				icon: icon ? icon.file : '_fastdmm_interface.dmi',
+				icon_state: icon ? this.get_var("icon_state") : null,
 				dir: this.get_var("dir") & 0xF,
 				color,
 				layer: +this.get_var("layer") || 0,

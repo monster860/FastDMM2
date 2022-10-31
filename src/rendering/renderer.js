@@ -238,7 +238,10 @@ function draw_appearance(transform, z, obj, bounds_info = undefined, pointerid =
 	}
 
 	let icon = obj.icon;
-	if(!icon) return;
+	if(!icon) {
+		icon ='_fastdmm_interface.dmi';
+		icon_state = "";
+	}
 	let icon_meta;
 	let icon_state = obj.icon_state;
 	if(icon == "white") {
