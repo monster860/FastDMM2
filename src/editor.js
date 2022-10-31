@@ -7,6 +7,7 @@ const Parser = require('./parser/parser.js');
 const MapWindow = require('./mapwindow.js');
 const ObjTreeWindow = require('./objtreewindow.js');
 const InstanceWindow = require('./instancewindow.js');
+const InstanceFindWindow = require('./instancefindwindow.js');
 const DMM = require('./parser/dmm.js');
 const {FileMenu, OptionsMenu, HelpMenu} = require('./menu/menubar_menus.js');
 const ProgressBarPanel = require('./panels/progress_bar_panel.js');
@@ -43,6 +44,7 @@ class Editor {
 		this.map_window = new MapWindow(this);
 		this.objtree_window = new ObjTreeWindow(this);
 		this.instance_window = new InstanceWindow(this);
+		this.instance_find_window = new InstanceFindWindow(this);
 
 		this.file_menu = new FileMenu(this);
 		this.file_menu.add_to_menubar(document.getElementById("ui-menubar"), "File");
