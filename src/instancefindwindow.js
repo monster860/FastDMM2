@@ -7,7 +7,6 @@ module.exports = class InstanceFindWindow {
 	 */
 	constructor(editor) {
 		this.editor = editor;
-		/** @type {string} */
 		this.container = document.getElementById("instancefindwindow");
 	}
 
