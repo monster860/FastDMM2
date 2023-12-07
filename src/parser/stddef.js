@@ -3,8 +3,8 @@ module.exports = `
 #define EXCEPTION(value) new /exception(value)
 #define ASSERT(expression) if(!(expression)) { CRASH("[__FILE__]:[__LINE__]:Assertion Failed: [#X]")}
 
-#define DM_VERSION 514
-#define DM_BUILD 1569
+#define DM_VERSION 515
+#define DM_BUILD 1620
 #define FASTDMM 1
 
 // eye and sight

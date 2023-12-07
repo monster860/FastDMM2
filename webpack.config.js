@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack')
 const CopyPlugin = require('copy-webpack-plugin');
 const fs = require('fs').promises;
 const crypto = require('crypto');
@@ -25,6 +26,22 @@ module.exports = {
 			}
 		]
 	},
+	resolve: {
+        fallback: {
+            //assert: require.resolve('assert'),
+            //crypto: require.resolve('crypto-browserify'),
+           // http: require.resolve('stream-http'),
+            //https: require.resolve('https-browserify'),
+            //os: require.resolve('os-browserify/browser'),
+            "stream": require.resolve('stream-browserify'),
+			"zlib": require.resolve("browserify-zlib"),
+			"path": require.resolve("path-browserify"),
+			"crypto": require.resolve("crypto-browserify"),
+			"buffer": require.resolve("buffer/"),
+			"util": require.resolve("util/"),
+			"assert": require.resolve("assert/")
+        },
+    },
 	entry: './src/index.js',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
@@ -32,7 +49,7 @@ module.exports = {
 	},
 	devServer: {
 		port: 12345,
-		contentBase: './res'
+		static: './res'
 	},
 	mode: 'development',
 	plugins: [
@@ -58,6 +75,12 @@ module.exports = {
 					await fs.writeFile(path.resolve(dir, "appfiles.json"), JSON.stringify(out_json), "utf8");
 				});
 			}
-		}
+		},
+		new webpack.ProvidePlugin({
+			process: 'process/browser',
+		  }),
+		  new webpack.ProvidePlugin({
+            Buffer: ['buffer', 'Buffer'],
+        }),
 	]
 };
