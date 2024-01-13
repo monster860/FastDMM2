@@ -17,12 +17,8 @@ module.exports = {
 			},
 			{
 				test: /\.(svg|eot|woff|woff2|ttf)$/,
-				use: {
-					loader: 'file-loader',
-					options: {
-						name: '[name].[ext]'
-					}
-				}
+				type: 'asset/resource',
+    			dependency: { not: ['url'] },
 			}
 		]
 	},
