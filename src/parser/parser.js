@@ -414,7 +414,7 @@ class Parser {
 					lookahead = pointer.get_next();
 				}
 				continue;
-			} else if((lookahead instanceof SymbolToken && lookahead.value == "/") || lookahead instanceof WordToken) {
+			} else if((lookahead instanceof SymbolToken && lookahead.value == "/") || lookahead instanceof WordToken || lookahead instanceof StringToken) {
 				let sub_path = (lookahead instanceof SymbolToken && lookahead.value == "/") ? [] : [...current_path]; // remember that starting a line with a / means you start over at the beginning.
 				let is_fastdmm_macro = false;
 				while((lookahead instanceof SymbolToken && lookahead.value == "/") || (lookahead instanceof WordToken && !["as","in"].includes(lookahead.value))) {
@@ -445,7 +445,7 @@ class Parser {
 					continue;
 				}
 				if(sub_path[sub_path.length-1] == "operator") {
-					while(lookahead instanceof SymbolToken && lookahead.value != "(" && !lookahead.whitespace_flag) {
+					while((lookahead instanceof SymbolToken || lookahead instanceof StringToken) && lookahead.value != "(" && !lookahead.whitespace_flag) {
 						sub_path[sub_path.length-1] += lookahead.value;
 						pointer.advance();
 						lookahead = pointer.get_next();
