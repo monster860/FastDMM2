@@ -85,6 +85,13 @@ module.exports = class InstanceWindow {
 			container.appendChild(label);
 		}
 
+		let buttons = document.createElement("div");
+		let instancesButton = document.createElement("button");
+		instancesButton.innerText = "Search";
+		instancesButton.addEventListener("click", this.handle_search_click.bind(this));
+		buttons.append(instancesButton);
+		container.appendChild(buttons);
+
 		return container;
 	}
 
@@ -120,4 +127,14 @@ module.exports = class InstanceWindow {
 			}
 		}
 	}
+
+	handle_search_click(e) {
+		if(!e.target) return;
+		// cursed, but we need the variant-leaf
+		let leaf = e.target.closest(".vertical-node-container").firstChild;
+		if(leaf && leaf.dataset.instance) {
+			this.editor.instance_find_window.set_instance_search(leaf.dataset.instance);
+		}
+	}
+
 }

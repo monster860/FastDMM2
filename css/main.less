@@ -126,6 +126,7 @@ body {
 			position: absolute;
 			bottom: 0px;
 			right: 0px;
+			min-width: 100px;
 			max-width: 300px;
 			max-height: 60%;
 			padding: 2px;
@@ -166,6 +167,19 @@ body {
 			&:empty {
 				display: none;// hmmmm
 			}
+		}
+		#instancefindwindow {
+			position: absolute;
+			top: @tabs-height;
+			right: 0px;
+			padding-right: 10px;
+			max-width: 300px;
+			max-height: 40%;
+			padding: 2px;
+			background-color: rgba(0,0,0,0.8);
+			overflow: auto;
+			white-space: nowrap;
+			scrollbar-width: thin;
 		}
 		#statustextwindow {
 			position: absolute;
