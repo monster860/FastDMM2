@@ -7,7 +7,7 @@ let querystring = new URLSearchParams(window.location.search);
 this.welcome_panel = null;
 if(querystring.has("code")) {
 	let code = querystring.get("code");
-	fetch('https://ss13.io/fastdmm2_gh_token/' + code).then(res => {
+	fetch('https://fastdmm2login.yogstation.net/fastdmm2_gh_token/' + code).then(res => {
 		return res.json();
 	}).then(json => {
 		console.log(json);
