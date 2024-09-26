@@ -301,7 +301,7 @@ module.exports = class GithubFileContext {
 	}
 
 	github_login() {
-		window.open("https://github.com/login/oauth/authorize?client_id=0ffb004f786288b87437&scope=public_repo", "_blank");
+		window.open("https://github.com/login/oauth/authorize?client_id=Ov23liM5zuFYUVmmkgaV&scope=public_repo", "_blank");
 	}
 	github_logout() {
 		localStorage.removeItem("gh_token");
