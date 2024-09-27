@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-prod": "npm ci && rimraf ./dist && webpack --mode=production"
+    "build-prod": "npm ci && rimraf ./dist && webpack --mode=production",
+    "develop": "webpack-dev-server"
   },
   "author": "",
   "license": "MIT",
